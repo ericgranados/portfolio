@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Eric Granados - Network Infrastructure Technician building toward offensive security. Portfolio, projects, notes, and professional journey.">
+    <meta name="author" content="Eric Granados">
+    <title>Eric Granados | Network Infrastructure Technician | Offensive Security</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --bg-primary: #0a0c10;
+            --bg-secondary: #16181d;
+            --bg-card: #1a1c23;
+            --accent: #22c55e;
+            --accent-dark: #16a34a;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #272b33;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
+
+        .section-header {
+            font-size: 1.75rem;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            color: #22c55e;
+        }
+        
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #22c55e;
+        }
+
+        .tactical-bg {
+            background-color: var(--bg-primary);
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #334155;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .project-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: #334155;
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+
+        .progress-bar {
+            transition: width 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: linear-gradient(to right, #22c55e, #4ade80);
+        }
+
+        .focus-item {
+            transition: all 0.2s ease;
+        }
+        
+        .focus-item:hover {
+            background-color: #1f232b;
+        }
+
+        .nav-scrolled {
+            background-color: rgba(10, 12, 16, 0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #272b33, transparent);
+        }
+
+        .stat-value {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .note-item {
+            transition: all 0.2s ease;
+        }
+        
+        .note-item:hover {
+            background-color: #1f232b;
+        }
+
+        .green-glow {
+            box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.1);
+        }
+
+        .tactical-text {
+            font-feature-settings: "ss02";
+        }
+
+        .metric {
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .hero-grid {
+            background-image: 
+                linear-gradient(rgba(16, 185, 129, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(16, 185, 129, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0c10] text-[#f1f5f9] antialiased">
+    <!-- NAVIGATION -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-[#0a0c10]/95 border-b border-[#272b33] transition-all duration-300">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 h-20 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-[#22c55e] flex items-center justify-center rounded-lg shadow-inner">
+                        <span class="text-[#0a0c10] font-bold text-2xl tracking-tighter font-display">EG</span>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-lg tracking-tight">ERIC GRANADOS</div>
+                        <div class="text-[10px] text-[#94a3b8] -mt-1 font-medium tracking-[1.5px]">TECHNICAL PROFESSIONAL</div>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="#home" class="nav-link text-[#f1f5f9] active" data-nav="home">HOME</a>
+                    <a href="#about" class="nav-link text-[#94a3b8] hover:text-[#f1f5f9]" data-nav="about">ABOUT</a>
+                    <a href="#projects" class="nav-link text-[#94a3b8] hover:text-[#f1f5f9]" data-nav="projects">PROJECTS</a>
+                    <a href="#notes" class="nav-link text-[#94a3b8] hover:text-[#f1f5f9]" data-nav="notes">NOTES</a>
+                    <a href="#now" class="nav-link text-[#94a3b8] hover:text-[#f1f5f9]" data-nav="now">NOW</a>
+                    <a href="#resume" class="nav-link text-[#94a3b8] hover:text-[#f1f5f9]" data-nav="resume">RESUME</a>
+                    <a href="#contact" class="nav-link text-[#94a3b8] hover:text-[#f1f5f9]" data-nav="contact">CONTACT</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn"
+                        class="md:hidden w-10 h-10 flex items-center justify-center text-[#94a3b8] hover:text-white hover:bg-[#1a1c23] rounded-xl transition-colors"
+                        aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-[#272b33] bg-[#0a0c10]">
+            <div class="px-6 py-6 flex flex-col gap-y-4 text-sm font-medium">
+                <a href="#home" class="mobile-nav-link py-2 text-[#f1f5f9]" data-nav="home">HOME</a>
+                <a href="#about" class="mobile-nav-link py-2 text-[#94a3b8]" data-nav="about">ABOUT</a>
+                <a href="#projects" class="mobile-nav-link py-2 text-[#94a3b8]" data-nav="projects">PROJECTS</a>
+                <a href="#notes" class="mobile-nav-link py-2 text-[#94a3b8]" data-nav="notes">NOTES</a>
+                <a href="#now" class="mobile-nav-link py-2 text-[#94a3b8]" data-nav="now">NOW</a>
+                <a href="#resume" class="mobile-nav-link py-2 text-[#94a3b8]" data-nav="resume">RESUME</a>
+                <a href="#contact" class="mobile-nav-link py-2 text-[#94a3b8]" data-nav="contact">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO / HOME -->
+    <section id="home" class="pt-20 min-h-[100dvh] flex items-center border-b border-[#272b33]">
+        <div class="max-w-screen-2xl mx-auto px-8 pt-8 pb-16">
+            <div class="grid lg:grid-cols-12 gap-x-12 items-center">
+                <!-- Left Content -->
+                <div class="lg:col-span-7 xl:col-span-7 max-w-3xl">
+                    <div class="mb-6">
+                        <div class="inline-flex items-center gap-x-2 px-4 py-1.5 rounded-2xl bg-[#16181d] border border-[#272b33] text-xs tracking-[2px] font-mono text-[#94a3b8]">
+                            <div class="w-1.5 h-1.5 bg-[#22c55e] rounded-full animate-pulse"></div>
+                            // BUILDING. LEARNING. IMPROVING.
+                        </div>
+                    </div>
+
+                    <h1 class="font-display text-7xl lg:text-7xl xl:text-8xl leading-[0.92] tracking-tighter font-semibold mb-4">
+                        ERIC<br>GRANADOS
+                    </h1>
+                    
+                    <div class="mb-6">
+                        <div class="text-2xl lg:text-3xl font-semibold tracking-tight text-white">NETWORK INFRASTRUCTURE TECHNICIAN</div>
+                        <div class="text-2xl lg:text-3xl font-semibold tracking-tight text-[#22c55e]">BUILDING TOWARD OFFENSIVE SECURITY</div>
+                    </div>
+
+                    <p class="max-w-lg text-lg text-[#94a3b8] leading-relaxed mb-9">
+                        I bridge the gap between infrastructure and security. Currently building expertise in networking, systems, 
+                        and offensive security through deliberate practice and real-world experience.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4">
+                        <a href="#projects" 
+                           class="group inline-flex items-center justify-center gap-x-3 bg-[#22c55e] hover:bg-[#16a34a] active:bg-[#15803d] transition-all text-[#0a0c10] font-semibold px-8 h-14 rounded-2xl text-sm tracking-wider shadow-lg shadow-emerald-950/50">
+                            VIEW PROJECTS
+                            <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-0.5"></i>
+                        </a>
+                        
+                        <button onclick="downloadResume()"
+                                class="group inline-flex items-center justify-center gap-x-3 border border-[#475569] hover:border-[#64748b] hover:bg-[#16181d] transition-all text-white font-semibold px-7 h-14 rounded-2xl text-sm tracking-wider">
+                            <i class="fa-solid fa-download"></i>
+                            <span>DOWNLOAD RESUME</span>
+                        </button>
+                    </div>
+
+                    <div class="mt-10 flex items-center gap-x-8 text-xs">
+                        <div class="flex items-center gap-x-2 text-[#64748b]">
+                            <i class="fa-solid fa-map-marker-alt"></i>
+                            <span>Las Vegas, NV</span>
+                        </div>
+                        <div class="h-3 w-px bg-[#272b33]"></div>
+                        <div class="text-[#64748b]">Open to opportunities</div>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="lg:col-span-5 xl:col-span-5 mt-12 lg:mt-0">
+                    <div class="relative">
+                        <div class="aspect-[4/5] w-full max-w-[440px] mx-auto lg:mx-0 rounded-3xl overflow-hidden border border-[#272b33] shadow-2xl shadow-black/70 ring-1 ring-inset ring-white/5">
+                            <img src="hero-portrait.jpg" 
+                                 alt="Eric Granados - Network Infrastructure Technician in server room environment"
+                                 class="w-full h-full object-cover grayscale-[0.15] brightness-[0.92]">
+                        </div>
+                        <!-- Subtle overlay badge -->
+                        <div class="absolute -bottom-3 -right-3 bg-[#16181d] border border-[#272b33] rounded-2xl px-5 py-3 shadow-xl hidden xl:block">
+                            <div class="flex items-center gap-x-3">
+                                <div>
+                                    <div class="text-xs text-[#64748b]">CURRENTLY</div>
+                                    <div class="font-semibold text-sm tracking-tight">Deploying enterprise networks</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURRENT FOCUS -->
+    <section id="now" class="max-w-screen-2xl mx-auto px-8 pt-14 pb-8">
+        <div class="flex items-end justify-between mb-6">
+            <div>
+                <div class="uppercase tracking-[2px] text-xs font-semibold text-[#64748b]">CURRENT FOCUS</div>
+                <div class="text-3xl font-semibold tracking-tight">Active Learning &amp; Development</div>
+            </div>
+            <a href="#projects" class="hidden md:flex items-center gap-x-2 text-sm text-[#22c55e] hover:text-[#4ade80] font-medium group">
+                SEE HOW THIS SHOWS UP IN PROJECTS 
+                <i class="fa-solid fa-arrow-right text-xs transition group-hover:translate-x-1"></i>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <!-- CCNA -->
+            <div class="focus-item card rounded-3xl p-5">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-9 h-9 rounded-2xl bg-[#0f172a] flex items-center justify-center border border-[#334155]">
+                        <i class="fa-solid fa-project-diagram text-[#22c55e]"></i>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs font-mono text-[#64748b]">IN PROGRESS</div>
+                        <div class="font-mono text-2xl font-semibold tracking-tighter stat-value">65%</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-semibold tracking-tight">CCNA</div>
+                    <div class="text-xs text-[#64748b] mt-0.5">Cisco Certified Network Associate</div>
+                </div>
+                <div class="mt-4 h-1.5 bg-[#272b33] rounded-full overflow-hidden">
+                    <div class="progress-bar h-1.5 w-[65%] rounded-full" data-progress="65"></div>
+                </div>
+            </div>
+
+            <!-- HTB CPTS -->
+            <div class="focus-item card rounded-3xl p-5">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-9 h-9 rounded-2xl bg-[#0f172a] flex items-center justify-center border border-[#334155]">
+                        <i class="fa-solid fa-shield-halved text-[#22c55e]"></i>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs font-mono text-[#64748b]">IN PROGRESS</div>
+                        <div class="font-mono text-2xl font-semibold tracking-tighter stat-value">40%</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-semibold tracking-tight">HTB CPTS</div>
+                    <div class="text-xs text-[#64748b] mt-0.5">Hack The Box Certified Penetration Testing Specialist</div>
+                </div>
+                <div class="mt-4 h-1.5 bg-[#272b33] rounded-full overflow-hidden">
+                    <div class="progress-bar h-1.5 w-[40%] rounded-full" data-progress="40"></div>
+                </div>
+            </div>
+
+            <!-- Active Directory -->
+            <div class="focus-item card rounded-3xl p-5">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-9 h-9 rounded-2xl bg-[#0f172a] flex items-center justify-center border border-[#334155]">
+                        <i class="fa-solid fa-users text-[#22c55e]"></i>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs font-mono text-[#64748b]">DEEPENING</div>
+                        <div class="font-mono text-2xl font-semibold tracking-tighter stat-value">70%</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-semibold tracking-tight">ACTIVE DIRECTORY</div>
+                    <div class="text-xs text-[#64748b] mt-0.5">Enterprise AD attack paths &amp; defense</div>
+                </div>
+                <div class="mt-4 h-1.5 bg-[#272b33] rounded-full overflow-hidden">
+                    <div class="progress-bar h-1.5 w-[70%] rounded-full" data-progress="70"></div>
+                </div>
+            </div>
+
+            <!-- Technical Writing -->
+            <div class="focus-item card rounded-3xl p-5">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-9 h-9 rounded-2xl bg-[#0f172a] flex items-center justify-center border border-[#334155]">
+                        <i class="fa-solid fa-file-lines text-[#22c55e]"></i>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs font-mono text-[#64748b]">ONGOING</div>
+                        <div class="font-mono text-2xl font-semibold tracking-tighter stat-value">80%</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-semibold tracking-tight">TECHNICAL WRITING</div>
+                    <div class="text-xs text-[#64748b] mt-0.5">Labs, documentation &amp; knowledge sharing</div>
+                </div>
+                <div class="mt-4 h-1.5 bg-[#272b33] rounded-full overflow-hidden">
+                    <div class="progress-bar h-1.5 w-[80%] rounded-full" data-progress="80"></div>
+                </div>
+            </div>
+
+            <!-- Fitness & Jiu-Jitsu -->
+            <div class="focus-item card rounded-3xl p-5">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="w-9 h-9 rounded-2xl bg-[#0f172a] flex items-center justify-center border border-[#334155]">
+                        <i class="fa-solid fa-dumbbell text-[#22c55e]"></i>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs font-mono text-[#64748b]">DAILY DISCIPLINE</div>
+                        <div class="font-mono text-2xl font-semibold tracking-tighter stat-value">98%</div>
+                    </div>
+                </div>
+                <div>
+                    <div class="font-semibold tracking-tight">FITNESS &amp; JIU-JITSU</div>
+                    <div class="text-xs text-[#64748b] mt-0.5">Building discipline in body &amp; mind</div>
+                </div>
+                <div class="mt-4 h-1.5 bg-[#272b33] rounded-full overflow-hidden">
+                    <div class="progress-bar h-1.5 w-[98%] rounded-full" data-progress="98"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about" class="max-w-screen-2xl mx-auto px-8 pt-10 pb-16 border-t border-[#272b33]">
+        <div class="grid lg:grid-cols-12 gap-x-12 gap-y-10">
+            <!-- Bio -->
+            <div class="lg:col-span-7">
+                <div class="uppercase tracking-[2.5px] text-xs font-semibold text-[#64748b] mb-3">ABOUT ME</div>
+                
+                <div class="prose prose-invert max-w-none">
+                    <p class="text-xl leading-tight tracking-tight text-white">
+                        I'm a Network Infrastructure Technician with a background in the U.S. Navy Reserve and over 14 years in casino security. 
+                        My path has been shaped by discipline, adaptability, and a commitment to excellence.
+                    </p>
+                    <p class="mt-5 text-[#94a3b8]">
+                        Today, I focus on enterprise infrastructure and security while building a career in offensive security. 
+                        I document my journey through labs, projects, and writing.
+                    </p>
+                </div>
+
+                <div class="mt-8">
+                    <a href="#notes" 
+                       class="inline-flex items-center gap-x-2 text-sm font-semibold group text-[#22c55e] hover:text-[#4ade80]">
+                        READ MORE ABOUT ME 
+                        <span class="transition group-hover:translate-x-1">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sidebar Info -->
+            <div class="lg:col-span-5">
+                <div class="card rounded-3xl p-7 text-sm">
+                    <div class="space-y-5">
+                        <div class="flex gap-4">
+                            <div class="w-5 mt-0.5 text-[#64748b]"><i class="fa-solid fa-map-marker-alt fa-fw"></i></div>
+                            <div>
+                                <div class="text-[#64748b] text-xs tracking-wider">LOCATION</div>
+                                <div class="font-medium">Las Vegas, NV</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-5 mt-0.5 text-[#64748b]"><i class="fa-solid fa-briefcase fa-fw"></i></div>
+                            <div>
+                                <div class="text-[#64748b] text-xs tracking-wider">CURRENT ROLE</div>
+                                <div class="font-medium">Network Integrations Technician I</div>
+                                <div class="text-xs text-[#64748b]">Vision Technologies • Clark County School District</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-5 mt-0.5 text-[#64748b]"><i class="fa-solid fa-clock fa-fw"></i></div>
+                            <div>
+                                <div class="text-[#64748b] text-xs tracking-wider">EXPERIENCE</div>
+                                <div class="font-medium">3+ Years in IT • 14+ Years Security</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-5 mt-0.5 text-[#64748b]"><i class="fa-solid fa-graduation-cap fa-fw"></i></div>
+                            <div>
+                                <div class="text-[#64748b] text-xs tracking-wider">EDUCATION</div>
+                                <div class="font-medium">Continuing Education • Self-Directed Labs</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-5 mt-0.5 text-[#64748b]"><i class="fa-solid fa-shield-halved fa-fw"></i></div>
+                            <div>
+                                <div class="text-[#64748b] text-xs tracking-wider">CLEARANCE</div>
+                                <div class="font-medium">Secret (Inactive)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-4">
+                            <div class="w-5 mt-0.5 text-[#64748b]"><i class="fa-solid fa-star fa-fw"></i></div>
+                            <div>
+                                <div class="text-[#64748b] text-xs tracking-wider">INTERESTS</div>
+                                <div class="font-medium leading-snug">Networking, Security, Philosophy,<br>Science, Fitness, Jiu-Jitsu</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section id="projects" class="max-w-screen-2xl mx-auto px-8 pt-8 pb-16 border-t border-[#272b33]">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <div class="uppercase tracking-[2px] text-xs font-semibold text-[#64748b]">FEATURED PROJECTS</div>
+                <div class="text-3xl font-semibold tracking-tighter">Selected Work</div>
+            </div>
+            <a href="#projects" onclick="showAllProjects()"
+               class="hidden md:inline-flex items-center gap-x-2 text-sm font-medium text-[#22c55e] hover:text-[#4ade80] group">
+                VIEW ALL PROJECTS 
+                <i class="fa-solid fa-arrow-right-long transition group-hover:translate-x-1"></i>
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
+            <!-- Project 1: AD Lab -->
+            <div class="project-card rounded-3xl p-6 group">
+                <div class="flex items-center gap-x-3 mb-5">
+                    <div class="w-10 h-10 rounded-2xl bg-[#052e16] flex items-center justify-center border border-[#166534]">
+                        <i class="fa-solid fa-server text-[#4ade80]"></i>
+                    </div>
+                    <div class="font-semibold tracking-tight text-lg">Enterprise Active Directory Lab</div>
+                </div>
+                <p class="text-[#94a3b8] text-[15px] leading-snug mb-5">
+                    Built a full AD environment to study attack paths and defense-in-depth techniques.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">AD</span>
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">KERBEROS</span>
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">BLOODHOUND</span>
+                </div>
+            </div>
+
+            <!-- Project 2: Network Deployments -->
+            <div class="project-card rounded-3xl p-6 group">
+                <div class="flex items-center gap-x-3 mb-5">
+                    <div class="w-10 h-10 rounded-2xl bg-[#052e16] flex items-center justify-center border border-[#166534]">
+                        <i class="fa-solid fa-network-wired text-[#4ade80]"></i>
+                    </div>
+                    <div class="font-semibold tracking-tight text-lg">Network Infrastructure Deployments</div>
+                </div>
+                <p class="text-[#94a3b8] text-[15px] leading-snug mb-5">
+                    Designed, deployed, and supported enterprise network environments across multiple sites.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">CISCO</span>
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">FORTINET</span>
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">RUCKUS</span>
+                </div>
+            </div>
+
+            <!-- Project 3: AD Security Research -->
+            <div class="project-card rounded-3xl p-6 group">
+                <div class="flex items-center gap-x-3 mb-5">
+                    <div class="w-10 h-10 rounded-2xl bg-[#052e16] flex items-center justify-center border border-[#166534]">
+                        <i class="fa-solid fa-shield-halved text-[#4ade80]"></i>
+                    </div>
+                    <div class="font-semibold tracking-tight text-lg">Active Directory Security Research</div>
+                </div>
+                <p class="text-[#94a3b8] text-[15px] leading-snug mb-5">
+                    Researching AD attack techniques and documenting findings through labs and write-ups.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">MITRE ATT&amp;CK</span>
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">POWERSHELL</span>
+                </div>
+            </div>
+
+            <!-- Project 4: HTB Assessments -->
+            <div class="project-card rounded-3xl p-6 group">
+                <div class="flex items-center gap-x-3 mb-5">
+                    <div class="w-10 h-10 rounded-2xl bg-[#052e16] flex items-center justify-center border border-[#166534]">
+                        <i class="fa-solid fa-terminal text-[#4ade80]"></i>
+                    </div>
+                    <div class="font-semibold tracking-tight text-lg">Hack The Box Assessments</div>
+                </div>
+                <p class="text-[#94a3b8] text-[15px] leading-snug mb-5">
+                    Hands-on machine assessments to build practical offensive security skills.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">PENUMBRA</span>
+                    <span class="px-3 py-1 text-xs rounded-xl bg-[#052e16] text-[#4ade80] font-mono tracking-wider">CPTS PATH</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6 text-center md:hidden">
+            <button onclick="showAllProjects()" 
+                    class="text-sm font-medium text-[#22c55e] inline-flex items-center gap-x-2">
+                VIEW ALL PROJECTS <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- OPERATING PRINCIPLES -->
+    <section class="max-w-screen-2xl mx-auto px-8 pt-6 pb-16 border-t border-[#272b33]">
+        <div class="mb-8">
+            <div class="uppercase tracking-[2px] text-xs font-semibold text-[#64748b]">OPERATING PRINCIPLES</div>
+            <div class="text-3xl font-semibold tracking-tighter">How I Work</div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="card rounded-3xl p-6">
+                <div class="w-9 h-9 mb-5 rounded-2xl bg-[#052e16] flex items-center justify-center">
+                    <i class="fa-solid fa-bullseye text-[#4ade80] text-xl"></i>
+                </div>
+                <div class="font-semibold tracking-tight mb-2">MASTERY</div>
+                <p class="text-sm text-[#94a3b8]">Competence is earned through repetition and intentional practice.</p>
+            </div>
+            
+            <div class="card rounded-3xl p-6">
+                <div class="w-9 h-9 mb-5 rounded-2xl bg-[#052e16] flex items-center justify-center">
+                    <i class="fa-solid fa-book text-[#4ade80] text-xl"></i>
+                </div>
+                <div class="font-semibold tracking-tight mb-2">DOCUMENTATION</div>
+                <p class="text-sm text-[#94a3b8]">Writing clarifies thinking and creates a record that outlives memory.</p>
+            </div>
+            
+            <div class="card rounded-3xl p-6">
+                <div class="w-9 h-9 mb-5 rounded-2xl bg-[#052e16] flex items-center justify-center">
+                    <i class="fa-solid fa-dumbbell text-[#4ade80] text-xl"></i>
+                </div>
+                <div class="font-semibold tracking-tight mb-2">DISCIPLINE</div>
+                <p class="text-sm text-[#94a3b8]">Discipline in body builds discipline in mind and work.</p>
+            </div>
+            
+            <div class="card rounded-3xl p-6">
+                <div class="w-9 h-9 mb-5 rounded-2xl bg-[#052e16] flex items-center justify-center">
+                    <i class="fa-solid fa-handshake text-[#4ade80] text-xl"></i>
+                </div>
+                <div class="font-semibold tracking-tight mb-2">SERVICE</div>
+                <p class="text-sm text-[#94a3b8]">Use skills to solve problems and make a positive impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- LATEST NOTES -->
+    <section id="notes" class="max-w-screen-2xl mx-auto px-8 pt-6 pb-20 border-t border-[#272b33]">
+        <div class="flex items-center justify-between mb-7">
+            <div>
+                <div class="uppercase tracking-[2px] text-xs font-semibold text-[#64748b]">LATEST NOTES</div>
+                <div class="text-3xl font-semibold tracking-tighter">From the Lab &amp; Field</div>
+            </div>
+            <a href="#" onclick="showAllNotes()" class="text-sm font-medium text-[#22c55e] hover:text-[#4ade80] flex items-center gap-x-2 group">
+                VIEW ALL NOTES 
+                <i class="fa-solid fa-arrow-right transition group-hover:translate-x-1"></i>
+            </a>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+            <!-- Note 1 -->
+            <div class="note-item flex gap-4 card rounded-3xl p-5 cursor-pointer" onclick="viewNote(0)">
+                <div class="mt-1"><i class="fa-solid fa-file-lines text-[#64748b] text-xl"></i></div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <div class="font-semibold tracking-tight">Subnetting Without Memorization</div>
+                        <div class="text-xs text-[#64748b] whitespace-nowrap">MAY 10, 2024</div>
+                    </div>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <span class="text-xs px-2.5 py-px rounded bg-[#052e16] text-[#4ade80] font-mono tracking-wider">NETWORKING</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note 2 -->
+            <div class="note-item flex gap-4 card rounded-3xl p-5 cursor-pointer" onclick="viewNote(1)">
+                <div class="mt-1"><i class="fa-solid fa-file-lines text-[#64748b] text-xl"></i></div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <div class="font-semibold tracking-tight">Kerberoasting Explained</div>
+                        <div class="text-xs text-[#64748b] whitespace-nowrap">MAY 03, 2024</div>
+                    </div>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <span class="text-xs px-2.5 py-px rounded bg-[#052e16] text-[#4ade80] font-mono tracking-wider">ACTIVE DIRECTORY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note 3 -->
+            <div class="note-item flex gap-4 card rounded-3xl p-5 cursor-pointer" onclick="viewNote(2)">
+                <div class="mt-1"><i class="fa-solid fa-file-lines text-[#64748b] text-xl"></i></div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <div class="font-semibold tracking-tight">Fortilink Architecture Notes</div>
+                        <div class="text-xs text-[#64748b] whitespace-nowrap">APR 28, 2024</div>
+                    </div>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <span class="text-xs px-2.5 py-px rounded bg-[#052e16] text-[#4ade80] font-mono tracking-wider">NETWORK INFRASTRUCTURE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note 4 -->
+            <div class="note-item flex gap-4 card rounded-3xl p-5 cursor-pointer" onclick="viewNote(3)">
+                <div class="mt-1"><i class="fa-solid fa-file-lines text-[#64748b] text-xl"></i></div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <div class="font-semibold tracking-tight">What Stoicism Gets Right (and Wrong)</div>
+                        <div class="text-xs text-[#64748b] whitespace-nowrap">APR 20, 2024</div>
+                    </div>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <span class="text-xs px-2.5 py-px rounded bg-[#334155] text-[#94a3b8] font-mono tracking-wider">PHILOSOPHY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note 5 -->
+            <div class="note-item flex gap-4 card rounded-3xl p-5 cursor-pointer" onclick="viewNote(4)">
+                <div class="mt-1"><i class="fa-solid fa-file-lines text-[#64748b] text-xl"></i></div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <div class="font-semibold tracking-tight">Documenting HTB Penumbra</div>
+                        <div class="text-xs text-[#64748b] whitespace-nowrap">APR 15, 2024</div>
+                    </div>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <span class="text-xs px-2.5 py-px rounded bg-[#052e16] text-[#4ade80] font-mono tracking-wider">CPTS PATH</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Note 6 -->
+            <div class="note-item flex gap-4 card rounded-3xl p-5 cursor-pointer" onclick="viewNote(5)">
+                <div class="mt-1"><i class="fa-solid fa-file-lines text-[#64748b] text-xl"></i></div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-x-4">
+                        <div class="font-semibold tracking-tight">Building a Home Lab on a Budget</div>
+                        <div class="text-xs text-[#64748b] whitespace-nowrap">APR 08, 2024</div>
+                    </div>
+                    <div class="mt-1 flex items-center gap-x-2">
+                        <span class="text-xs px-2.5 py-px rounded bg-[#334155] text-[#94a3b8] font-mono tracking-wider">HOMELAB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESUME / CTA -->
+    <section id="resume" class="max-w-screen-2xl mx-auto px-8 py-16 border-t border-[#272b33] bg-[#16181d]">
+        <div class="max-w-3xl mx-auto text-center">
+            <div class="uppercase tracking-[2px] text-xs font-semibold text-[#64748b]">RESUME</div>
+            <h2 class="text-4xl font-semibold tracking-tighter mt-2 mb-4">Ready to contribute.<br>Built to deliver.</h2>
+            <p class="text-[#94a3b8] max-w-md mx-auto">Download my latest resume to see how my experience in infrastructure, security operations, and continuous learning can support your team.</p>
+            
+            <div class="mt-8 flex justify-center gap-x-4">
+                <button onclick="downloadResume()" 
+                        class="inline-flex items-center gap-x-3 bg-white text-[#0a0c10] font-semibold px-10 h-14 rounded-2xl hover:bg-[#e2e8f0] active:bg-white transition text-sm tracking-wider shadow-xl">
+                    <i class="fa-solid fa-download"></i>
+                    <span>DOWNLOAD RESUME (PDF)</span>
+                </button>
+                
+                <a href="#contact" 
+                   class="inline-flex items-center gap-x-3 border border-[#475569] hover:bg-[#1a1c23] font-semibold px-8 h-14 rounded-2xl text-sm tracking-wider transition">
+                    GET IN TOUCH
+                </a>
+            </div>
+            <p class="text-[10px] text-[#475569] mt-4 tracking-wider">Last updated • January 2026</p>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="max-w-screen-2xl mx-auto px-8 py-16 border-t border-[#272b33]">
+        <div class="max-w-2xl mx-auto">
+            <div class="text-center mb-10">
+                <div class="uppercase tracking-[2px] text-xs font-semibold text-[#64748b]">CONTACT</div>
+                <div class="text-4xl font-semibold tracking-tighter mt-1">Let's build something secure.</div>
+            </div>
+
+            <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="text-xs tracking-wider text-[#64748b] block mb-1.5">YOUR NAME</label>
+                        <input type="text" id="name" required
+                               class="w-full bg-[#16181d] border border-[#272b33] focus:border-[#22c55e] rounded-2xl px-5 h-14 text-sm placeholder:text-[#64748b] outline-none">
+                    </div>
+                    <div>
+                        <label class="text-xs tracking-wider text-[#64748b] block mb-1.5">EMAIL ADDRESS</label>
+                        <input type="email" id="email" required
+                               class="w-full bg-[#16181d] border border-[#272b33] focus:border-[#22c55e] rounded-2xl px-5 h-14 text-sm placeholder:text-[#64748b] outline-none">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="text-xs tracking-wider text-[#64748b] block mb-1.5">MESSAGE</label>
+                    <textarea id="message" rows="5" required placeholder="I'm interested in discussing a role / collaboration..."
+                              class="w-full bg-[#16181d] border border-[#272b33] focus:border-[#22c55e] rounded-3xl px-5 py-4 text-sm placeholder:text-[#64748b] outline-none resize-y"></textarea>
+                </div>
+                
+                <button type="submit"
+                        class="w-full md:w-auto bg-[#22c55e] hover:bg-[#16a34a] transition text-[#0a0c10] font-semibold tracking-wider px-14 h-14 rounded-2xl text-sm flex items-center justify-center gap-x-2">
+                    SEND MESSAGE
+                </button>
+            </form>
+            
+            <div class="text-center mt-10 text-xs text-[#64748b]">
+                Or reach out directly: <a href="mailto:eric@ericgranados.dev" class="text-[#22c55e] hover:underline">eric@ericgranados.dev</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-[#272b33] bg-[#0a0c10]">
+        <div class="max-w-screen-2xl mx-auto px-8 py-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-y-8">
+                <div class="flex items-center gap-x-4">
+                    <div class="w-8 h-8 bg-[#22c55e] flex items-center justify-center rounded-xl">
+                        <span class="text-[#0a0c10] font-bold text-xl tracking-tighter font-display">EG</span>
+                    </div>
+                    <div>
+                        <div class="font-semibold">ERIC GRANADOS</div>
+                        <div class="text-xs text-[#64748b]">BUILDING. LEARNING. IMPROVING.</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-x-8 gap-y-2 text-sm">
+                    <a href="#about" class="text-[#94a3b8] hover:text-white">About</a>
+                    <a href="#projects" class="text-[#94a3b8] hover:text-white">Projects</a>
+                    <a href="#notes" class="text-[#94a3b8] hover:text-white">Notes</a>
+                    <a href="#now" class="text-[#94a3b8] hover:text-white">Now</a>
+                    <a href="#resume" class="text-[#94a3b8] hover:text-white">Resume</a>
+                    <a href="#contact" class="text-[#94a3b8] hover:text-white">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-x-5 text-xl">
+                    <a href="https://linkedin.com/in/ericgranados" target="_blank" class="text-[#64748b] hover:text-[#22c55e] transition"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/ericgranados" target="_blank" class="text-[#64748b] hover:text-[#22c55e] transition"><i class="fa-brands fa-github"></i></a>
+                    <a href="mailto:eric@ericgranados.dev" class="text-[#64748b] hover:text-[#22c55e] transition"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-[#272b33] flex flex-col md:flex-row md:items-center justify-between text-xs text-[#475569] gap-y-2">
+                <div>© 2026 Eric Granados. All rights reserved.</div>
+                <div>Built with purpose. Backed by discipline.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Note Modal -->
+    <div id="note-modal" onclick="if (event.target.id === 'note-modal') closeNoteModal()" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="card max-w-2xl w-full rounded-3xl p-8 relative">
+            <button onclick="closeNoteModal()" class="absolute top-6 right-6 text-[#64748b] hover:text-white">
+                <i class="fa-solid fa-times text-2xl"></i>
+            </button>
+            
+            <div id="modal-content">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script configuration
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#22c55e');
+            
+            // Optional: extend Tailwind if needed
+            const style = document.createElement('style');
+            style.innerHTML = `
+                .prose p { margin-top: 1em; margin-bottom: 1em; }
+            `;
+            document.head.append(style);
+        }
+
+        // Navbar scroll effect + active link
+        function initializeNavbar() {
+            const navbar = document.getElementById('navbar');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+            
+            // Scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 30) {
+                    navbar.classList.add('nav-scrolled', 'shadow-xl');
+                } else {
+                    navbar.classList.remove('nav-scrolled', 'shadow-xl');
+                }
+                
+                // Active section highlighting
+                const sections = ['home', 'about', 'projects', 'notes', 'now', 'resume', 'contact'];
+                let current = 'home';
+                
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const sectionTop = section.getBoundingClientRect().top;
+                        if (sectionTop <= 140) {
+                            current = sectionId;
+                        }
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active', 'text-[#f1f5f9]');
+                    link.classList.add('text-[#94a3b8]');
+                    
+                    if (link.getAttribute('data-nav') === current) {
+                        link.classList.add('active', 'text-[#f1f5f9]');
+                        link.classList.remove('text-[#94a3b8]');
+                    }
+                });
+            });
+
+            // Mobile menu
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+            
+            // Close mobile menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    const icon = mobileBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
+            
+            // Smooth scroll for all nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        e.preventDefault();
+                        const offset = 80;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition - bodyRect - offset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Animate progress bars on scroll into view
+        function animateProgressBars() {
+            const progressBars = document.querySelectorAll('.progress-bar');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        progressBars.forEach(bar => {
+                            const targetWidth = bar.getAttribute('data-progress') + '%';
+                            // Reset then animate
+                            bar.style.width = '0%';
+                            setTimeout(() => {
+                                bar.style.width = targetWidth;
+                            }, 80);
+                        });
+                        observer.disconnect(); // Only animate once
+                    }
+                });
+            }, { threshold: 0.4 });
+            
+            const focusSection = document.getElementById('now');
+            if (focusSection) observer.observe(focusSection);
+        }
+
+        // Resume download
+        function downloadResume() {
+            const btns = document.querySelectorAll('button[onclick*="downloadResume"]');
+            
+            // Create a simple text resume blob as placeholder (user can replace with real PDF)
+            const resumeContent = `ERIC GRANADOS
+Network Infrastructure Technician | Building Toward Offensive Security
+Las Vegas, NV
+
+PROFESSIONAL SUMMARY
+Network Infrastructure Technician with U.S. Navy Reserve background and 14+ years in security operations. 
+Actively transitioning into offensive security and penetration testing through hands-on labs, certifications, and real-world infrastructure experience.
+
+CORE COMPETENCIES
+• Enterprise Network Infrastructure (Cisco, Fortinet, Ruckus)
+• Active Directory Administration & Security Research
+• Layer 2/3 Troubleshooting & VLAN Configuration
+• Technical Documentation & Knowledge Sharing
+• Offensive Security Fundamentals (HTB, AD attack paths)
+
+CERTIFICATIONS & LEARNING
+• CompTIA A+, Network+, Security+
+• PJPT (Practical Junior Penetration Tester) - TCM Security
+• CCNA - In Progress (65%)
+• HTB CPTS - In Progress (40%)
+• Active Directory Deepening (70%)
+
+EXPERIENCE
+Network Integrations Technician I | Vision Technologies | Dec 2023 – Present
+• Deploy, stage, configure and validate enterprise network infrastructure for Clark County School District
+• Work with Cisco, Fortinet, Ruckus switches/APs/UPS across multi-site educational environments
+
+Security & Operations | Planet Hollywood | ~14 years
+• Security operations and technical support in high-volume hospitality environment
+
+Construction Mechanic CM3 (Seabees) | U.S. Navy Reserve | 8 years
+• Deployed to Iraq | Leadership, team operations, documentation under pressure
+
+PROJECTS & LABS
+• Enterprise Active Directory Lab (Kerberos, BloodHound, attack paths)
+• Network Infrastructure Deployments across multiple sites
+• Hack The Box machine assessments & CPTS path
+• Technical writing on networking, Active Directory, and philosophy
+
+EDUCATION & DEVELOPMENT
+Self-directed cybersecurity education • Obsidian knowledge base • Continuous lab practice
+
+Built with purpose. Backed by discipline.
+© 2026 Eric Granados`;
+
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Eric_Granados_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Show nice toast
+            showToast("Resume downloaded. Replace with your actual PDF in production.");
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 bg-[#16181d] border border-[#334155] text-sm px-6 py-3 rounded-2xl shadow-2xl flex items-center gap-x-3 z-[200]`;
+            toast.innerHTML = `
+                <i class="fa-solid fa-check-circle text-[#22c55e]"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transition = 'all 0.3s ease';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 4200);
+        }
+
+        // Notes data
+        const notesData = [
+            {
+                title: "Subnetting Without Memorization",
+                date: "May 10, 2024",
+                category: "NETWORKING",
+                categoryColor: "bg-[#052e16] text-[#4ade80]",
+                content: `A practical approach to understanding IPv4 subnetting by focusing on binary logic and block sizes rather than rote memorization of tables. This note covers techniques that allow quick calculation of network, broadcast, and usable host ranges in any scenario.\n\nKey concepts: magic number method, CIDR notation shortcuts, and common design patterns seen in enterprise environments.`,
+                tags: ["IPv4", "Subnetting", "CCNA"]
+            },
+            {
+                title: "Kerberoasting Explained",
+                date: "May 03, 2024",
+                category: "ACTIVE DIRECTORY",
+                categoryColor: "bg-[#052e16] text-[#4ade80]",
+                content: `Deep dive into the Kerberoasting attack technique. Explains how service accounts with weak passwords can be targeted offline after requesting service tickets.\n\nIncludes detection strategies, mitigation (strong passwords + AES encryption), and how BloodHound can help identify high-value targets for this attack.`,
+                tags: ["Kerberos", "Active Directory", "Red Team"]
+            },
+            {
+                title: "Fortilink Architecture Notes",
+                date: "April 28, 2024",
+                category: "NETWORK INFRASTRUCTURE",
+                categoryColor: "bg-[#052e16] text-[#4ade80]",
+                content: `Notes from deploying and troubleshooting FortiLink between FortiGate and FortiSwitch infrastructure. Covers stack formation, management VLAN considerations, and integration with existing Cisco environments.`,
+                tags: ["Fortinet", "FortiGate", "Switching"]
+            },
+            {
+                title: "What Stoicism Gets Right (and Wrong)",
+                date: "April 20, 2024",
+                category: "PHILOSOPHY",
+                categoryColor: "bg-[#334155] text-[#94a3b8]",
+                content: `Personal reflections on applying Stoic principles to a career in technology and security. Discusses the value of focusing on what you can control (your effort, documentation, and skill development) versus external outcomes like certifications or job offers.\n\nAlso explores where modern interpretations of Stoicism fall short in community and emotional contexts.`,
+                tags: ["Philosophy", "Mindset", "Discipline"]
+            },
+            {
+                title: "Documenting HTB Penumbra",
+                date: "April 15, 2024",
+                category: "CPTS PATH",
+                categoryColor: "bg-[#052e16] text-[#4ade80]",
+                content: `Full write-up and methodology from completing the Penumbra machine on Hack The Box. Focuses on enumeration, privilege escalation vectors, and the specific techniques that align with CPTS learning objectives.`,
+                tags: ["HTB", "Penetration Testing", "Writeup"]
+            },
+            {
+                title: "Building a Home Lab on a Budget",
+                date: "April 08, 2024",
+                category: "HOMELAB",
+                categoryColor: "bg-[#334155] text-[#94a3b8]",
+                content: `How I assembled a capable homelab for Active Directory and network security research without breaking the bank. Includes hardware choices (used enterprise gear), Proxmox + ESXi considerations, and networking setup using pfSense + managed switches.`,
+                tags: ["Homelab", "Active Directory", "Budget"]
+            }
+        ];
+
+        function viewNote(index) {
+            const modal = document.getElementById('note-modal');
+            const content = document.getElementById('modal-content');
+            const note = notesData[index];
+            
+            content.innerHTML = `
+                <div class="flex items-start justify-between mb-6">
+                    <div>
+                        <span class="inline-block text-xs font-mono tracking-[1.5px] px-3 py-1 rounded-2xl ${note.categoryColor}">${note.category}</span>
+                        <h3 class="text-3xl font-semibold tracking-tighter mt-3 pr-8">${note.title}</h3>
+                        <div class="text-sm text-[#64748b] mt-1">${note.date}</div>
+                    </div>
+                </div>
+                
+                <div class="prose prose-invert text-[#cbd5e1] max-w-none text-[15px] leading-relaxed whitespace-pre-line">
+                    ${note.content}
+                </div>
+                
+                <div class="mt-8 pt-6 border-t border-[#272b33] flex flex-wrap gap-2">
+                    ${note.tags.map(tag => `<span class="text-xs px-4 py-1.5 rounded-2xl bg-[#0f172a] text-[#64748b] font-mono tracking-wider border border-[#272b33]">${tag}</span>`).join('')}
+                </div>
+                
+                <div class="mt-8 flex justify-end">
+                    <button onclick="closeNoteModal()" 
+                            class="px-8 py-2.5 text-sm rounded-2xl border border-[#334155] hover:bg-[#1a1c23] font-medium">
+                        CLOSE
+                    </button>
+                </div>
+            `;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeNoteModal() {
+            const modal = document.getElementById('note-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        function showAllProjects() {
+            const projectsSection = document.getElementById('projects');
+            projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Optional: flash effect or expand if we had more projects
+            setTimeout(() => {
+                projectsSection.style.transition = 'box-shadow 0.4s ease';
+                projectsSection.style.boxShadow = '0 0 0 1px #22c55e40';
+                setTimeout(() => {
+                    projectsSection.style.boxShadow = 'none';
+                }, 1400);
+            }, 600);
+        }
+
+        function showAllNotes() {
+            const notesSection = document.getElementById('notes');
+            notesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <span class="flex items-center gap-x-2">
+                    <i class="fa-solid fa-spinner fa-spin"></i> SENDING...
+                </span>
+            `;
+            
+            // Simulate sending (in real Next.js this would be an API route or email service)
+            setTimeout(() => {
+                submitBtn.innerHTML = `
+                    <span class="flex items-center gap-x-2 text-emerald-900">
+                        <i class="fa-solid fa-check"></i> MESSAGE SENT
+                    </span>
+                `;
+                submitBtn.style.backgroundColor = '#4ade80';
+                
+                setTimeout(() => {
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.innerHTML = originalText;
+                    
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'mt-4 text-center text-sm text-[#4ade80]';
+                    successMsg.textContent = "Thank you. I'll get back to you within 48 hours.";
+                    form.appendChild(successMsg);
+                    
+                    setTimeout(() => successMsg.remove(), 4800);
+                }, 2200);
+            }, 1350);
+        }
+
+        function initializeProgressBars() {
+            // Already handled in animateProgressBars()
+            // Extra: make sure initial state is 0 before animation
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                bar.style.width = '0%';
+            });
+        }
+
+        function initializeKeyboardShortcuts() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === "?" && document.activeElement.tagName === "BODY") {
+                    e.preventDefault();
+                    const notes = document.getElementById('notes');
+                    notes.scrollIntoView({ behavior: "smooth" });
+                }
+                
+                if (e.metaKey && e.key === "k") {
+                    e.preventDefault();
+                    const contact = document.getElementById('contact');
+                    contact.scrollIntoView({ behavior: "smooth" });
+                }
+            });
+            
+            // Easter egg hint
+            console.log('%c[Portfolio] Keyboard shortcuts: Press "?" to jump to notes. Cmd/Ctrl+K for contact.', 'color:#334155');
+        }
+
+        // Main initialization
+        function initializePortfolio() {
+            initializeTailwind();
+            initializeNavbar();
+            animateProgressBars();
+            initializeProgressBars();
+            initializeKeyboardShortcuts();
+            
+            // Make sure hero image has nice loading
+            const heroImg = document.querySelector('#home img');
+            if (heroImg) {
+                heroImg.addEventListener('load', () => {
+                    heroImg.style.opacity = '1';
+                });
+            }
+            
+            // Optional: pre-load note modal styles or other
+            console.log('%c[Eric Granados Portfolio] Static site initialized successfully. Ready for Next.js migration.', 'color:#166534');
+            
+            // Show a subtle welcome toast on first load (dev only feel)
+            if (window.location.hostname === 'localhost' || window.location.hostname === '') {
+                setTimeout(() => {
+                    // Uncomment if you want a dev hint
+                    // showToast("Tip: This is a fully static demo. Ready to move into your Next.js project.");
+                }, 5200);
+            }
+        }
+
+        // Boot app
+        window.onload = initializePortfolio;
+        
+        // Expose some functions globally if needed for future extension
+        window.EricPortfolio = {
+            downloadResume,
+            viewNote: (i) => viewNote(i),
+            showAllProjects
+        };
+    </script>
+</body>
+</html>
